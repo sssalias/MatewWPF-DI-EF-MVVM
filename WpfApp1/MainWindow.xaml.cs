@@ -1,13 +1,8 @@
-﻿using System.Text;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using WpfApp1.Core;
+using WpfApp1.Models;
+using WpfApp1.ViewModel;
 
 namespace WpfApp1
 {
@@ -16,9 +11,24 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly DBContext dBContext;
+        private readonly MainViewModel mainViewModel;
+        public MainWindow(DBContext _dBContext, MainViewModel _mainViewModel)
         {
             InitializeComponent();
+            this.dBContext = _dBContext;
+            this.mainViewModel = _mainViewModel;
+            DataContext = mainViewModel;
+            //MessageBox.Show(mainViewModel.PositionVm.Positions[0].Title);
+            //this.LoadData();
+        }
+
+        public void LoadData()
+        {
+            //List<Staff> staffs = dBContext.Staffs
+            //    .Include(s => s.Position)
+            //    .ToList();
+            //MessageBox.Show(staffs[0].Position.Title);
         }
     }
 }

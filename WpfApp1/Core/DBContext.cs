@@ -3,7 +3,7 @@ using WpfApp1.Models;
 
 namespace WpfApp1.Core
 {
-    internal class DBContext: DbContext
+    public class DBContext: DbContext
     {
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<Position> Positions { get; set; }

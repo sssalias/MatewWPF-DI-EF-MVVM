@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="1200">
+        Title="MainWindow" Height="650" Width="1200"
+        DataContext="{Binding}" x:Name="MainViewModel"
+        >
     <Grid>
         <TabControl Name="tabControl">
-            <TabItem Name="positionsPage" Header="Должности">
-                
+            <TabItem Name="positionsPage" Header="Гойда">
+                <DataGrid d:ItemsSource="{Binding positions}"/>
             </TabItem>
         </TabControl>
     </Grid>

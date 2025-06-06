@@ -1,6 +1,6 @@
 ﻿namespace WpfApp1.Models
 {
-    internal class Warehouse
+    public class Warehouse
     {
         public int ID { get; set; }
         public DateTime ArrivalDate { get; set; }

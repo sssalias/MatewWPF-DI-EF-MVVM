@@ -1,6 +1,6 @@
 ﻿namespace WpfApp1.Models
 {
-    internal class ProductType
+    public class ProductType
     {
         public int ProductTypeID { get; set; }
         public string Name { get; set; }

@@ -10,7 +10,7 @@ namespace WpfApp1
         {
             var host = Bootstrapper.CreateHost();
             var app = host.Services.GetRequiredService<App>();
-
+           
             app.Run();
         }
     }

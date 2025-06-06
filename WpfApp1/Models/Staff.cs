@@ -1,6 +1,6 @@
 ﻿namespace WpfApp1.Models
 {
-    internal class Staff
+    public class Staff
     {
         public int StaffID { get; set; }
         public string FullName { get; set; }

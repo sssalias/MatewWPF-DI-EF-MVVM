@@ -1,9 +1,10 @@
 ﻿namespace WpfApp1.Models
 {
-    internal class Position
+    public class Position
     {
         public int PositionID { get; set; }
         public string Title { get; set; }
+        public string Description { get; set; }
         public decimal Salary { get; set; }
         public string Responsibilities { get; set; }
         public string Requirements { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace WpfApp1.Models
 {
-    internal class Vendor
+    public class Vendor
     {
         public int VendorID { get; set; }
         public string Name { get; set; }
