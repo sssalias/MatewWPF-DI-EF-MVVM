@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using WpfApp1.Core;
 using WpfApp1.Models;
 
@@ -11,19 +6,25 @@ namespace WpfApp1.ViewModels
 {
     public class PositionViewModel: BaseViewModel
     {
-        private readonly DBContext dbContext;
+        public DBContext Context;
 
-        public ObservableCollection<Position> Positions { get; set; }
+        private ObservableCollection<Position> _positions;
 
-        public PositionViewModel(DBContext _dbContext)
+        public PositionViewModel(DBContext context)
         {
-            this.dbContext = _dbContext;
-            loadData();
+            Context = context;
         }
 
-        private void loadData()
+        public ObservableCollection<Position> Positions
         {
-            Positions = new ObservableCollection<Position>(this.dbContext.Positions);
+            get => _positions;
+            set => SetField(ref _positions, value);
+        }
+
+        public void LoadPositions()
+        {
+            var positions = Context.Positions.ToList();
+            Positions = new ObservableCollection<Position>(positions);
         }
     }
 }

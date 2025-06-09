@@ -11,6 +11,6 @@
         public DateTime ExpiryDate { get; set; }
 
         // Навигационная ссылка на тип товара
-        public virtual ProductType Type { get; set; }
+        public virtual Position Type { get; set; }
     }
 }

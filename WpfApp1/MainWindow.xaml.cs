@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Windows;
+﻿using System.Windows;
 using WpfApp1.Core;
-using WpfApp1.Models;
-using WpfApp1.ViewModel;
+using WpfApp1.Views;
+
 
 namespace WpfApp1
 {
@@ -11,24 +10,18 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly DBContext dBContext;
-        private readonly MainViewModel mainViewModel;
-        public MainWindow(DBContext _dBContext, MainViewModel _mainViewModel)
+        public MainWindow(
+            DBContext _dBContext, 
+            PositionsView _positionsView,
+            StaffsView _staffsView,
+            ProductTypesView _productTypesView
+        )
         {
             InitializeComponent();
-            this.dBContext = _dBContext;
-            this.mainViewModel = _mainViewModel;
-            DataContext = mainViewModel;
-            //MessageBox.Show(mainViewModel.PositionVm.Positions[0].Title);
-            //this.LoadData();
+            firstTab.Children.Add(_positionsView);
+            secondTab.Children.Add(_staffsView);
+            productTypeTab.Children.Add(_productTypesView);
         }
-
-        public void LoadData()
-        {
-            //List<Staff> staffs = dBContext.Staffs
-            //    .Include(s => s.Position)
-            //    .ToList();
-            //MessageBox.Show(staffs[0].Position.Title);
-        }
+       
     }
 }

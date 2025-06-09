@@ -34,6 +34,7 @@ namespace WpfApp1.Migrations
                     PositionID = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(type: "TEXT", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: false),
                     Salary = table.Column<decimal>(type: "TEXT", nullable: false),
                     Responsibilities = table.Column<string>(type: "TEXT", nullable: false),
                     Requirements = table.Column<string>(type: "TEXT", nullable: false)
@@ -111,6 +112,7 @@ namespace WpfApp1.Migrations
                     StorageConditions = table.Column<string>(type: "TEXT", nullable: false),
                     Packaging = table.Column<string>(type: "TEXT", nullable: false),
                     ExpiryDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    TypePositionID = table.Column<int>(type: "INTEGER", nullable: false),
                     CustomerID = table.Column<int>(type: "INTEGER", nullable: true),
                     VendorID = table.Column<int>(type: "INTEGER", nullable: true)
                 },
@@ -122,6 +124,12 @@ namespace WpfApp1.Migrations
                         column: x => x.CustomerID,
                         principalTable: "Customers",
                         principalColumn: "CustomerID");
+                    table.ForeignKey(
+                        name: "FK_Products_Positions_TypePositionID",
+                        column: x => x.TypePositionID,
+                        principalTable: "Positions",
+                        principalColumn: "PositionID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Products_ProductTypes_ProductTypeID",
                         column: x => x.ProductTypeID,
@@ -190,6 +198,11 @@ namespace WpfApp1.Migrations
                 name: "IX_Products_ProductTypeID",
                 table: "Products",
                 column: "ProductTypeID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_TypePositionID",
+                table: "Products",
+                column: "TypePositionID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_VendorID",

@@ -6,12 +6,28 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="650" Width="1200"
-        DataContext="{Binding}" x:Name="MainViewModel"
         >
     <Grid>
-        <TabControl Name="tabControl">
-            <TabItem Name="positionsPage" Header="Гойда">
-                <DataGrid d:ItemsSource="{Binding positions}"/>
+        <TabControl>
+            <TabItem Header="Должности">
+                <Grid Name="firstTab">
+                    
+                </Grid>
+            </TabItem>
+            <TabItem Header="Сотрудники">
+                <Grid Name="secondTab">
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Типы товаров">
+                <Grid Name="productTypeTab">
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Товары">
+                <Grid Name="productTab">
+
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

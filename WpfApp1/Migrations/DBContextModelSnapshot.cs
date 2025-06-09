@@ -105,6 +105,9 @@ namespace WpfApp1.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("TypePositionID")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int?>("VendorID")
                         .HasColumnType("INTEGER");
 
@@ -113,6 +116,8 @@ namespace WpfApp1.Migrations
                     b.HasIndex("CustomerID");
 
                     b.HasIndex("ProductTypeID");
+
+                    b.HasIndex("TypePositionID");
 
                     b.HasIndex("VendorID");
 
@@ -263,9 +268,15 @@ namespace WpfApp1.Migrations
                         .WithMany("ConsumedProducts")
                         .HasForeignKey("CustomerID");
 
-                    b.HasOne("WpfApp1.Models.ProductType", "Type")
+                    b.HasOne("WpfApp1.Models.ProductType", null)
                         .WithMany("Products")
                         .HasForeignKey("ProductTypeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WpfApp1.Models.Position", "Type")
+                        .WithMany()
+                        .HasForeignKey("TypePositionID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

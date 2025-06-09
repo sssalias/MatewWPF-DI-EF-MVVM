@@ -11,7 +11,7 @@ using WpfApp1.Core;
 namespace WpfApp1.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20250606095350_init")]
+    [Migration("20250608114849_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -52,6 +52,10 @@ namespace WpfApp1.Migrations
                     b.Property<int>("PositionID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Requirements")
                         .IsRequired()
@@ -104,6 +108,9 @@ namespace WpfApp1.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("TypePositionID")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int?>("VendorID")
                         .HasColumnType("INTEGER");
 
@@ -112,6 +119,8 @@ namespace WpfApp1.Migrations
                     b.HasIndex("CustomerID");
 
                     b.HasIndex("ProductTypeID");
+
+                    b.HasIndex("TypePositionID");
 
                     b.HasIndex("VendorID");
 
@@ -262,9 +271,15 @@ namespace WpfApp1.Migrations
                         .WithMany("ConsumedProducts")
                         .HasForeignKey("CustomerID");
 
-                    b.HasOne("WpfApp1.Models.ProductType", "Type")
+                    b.HasOne("WpfApp1.Models.ProductType", null)
                         .WithMany("Products")
                         .HasForeignKey("ProductTypeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WpfApp1.Models.Position", "Type")
+                        .WithMany()
+                        .HasForeignKey("TypePositionID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
